@@ -11,13 +11,15 @@ class User
 # @param [String] price
 # @return [Item]
   def add_item(name,price)
-    new_item = new Item(name,price,self)
+    new_item = Item.new(name,price,self)
     items.push(new_item)
   end
 
-  def list_items()
+  def list_active_items()
     items.each do |item|
-    puts "#{item.name} (#{item.price})"
+      if item.active?()
+        puts "#{item.name} (#{item.price})"
+      end
     end
   end
 end

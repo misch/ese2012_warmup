@@ -8,4 +8,8 @@ class Item
     self.state = "inactive"
     self.owner = owner
   end
+
+  def active?
+    state.eql?('active')
+  end
 end

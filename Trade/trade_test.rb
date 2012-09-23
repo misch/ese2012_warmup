@@ -4,18 +4,39 @@ require "user"
 
 class TradeTest < Test::Unit::TestCase
 
-  # Called after every test method runs. Can be used to tear
-  # down fixture information.
   def test_user_has_name
     user = User.new('Jane')
     name = user.name
-    assert(name.eql?('Jane'), 'Student has wrong name')
+    assert_not_equal(name,"", 'User has no name!')
   end
 
-  # Fake test
-#  def test_fail
+  def test_user_has_right_name
+    user = User.new('Jim')
+    assert(user.name.eql?('Jim'), 'User has wrong name!')
+  end
 
-    # To change this template use File | Settings | File Templates.
- #   fail("Not implemented")
- # end
+   def test_user_has_amount
+    user = User.new('Jim')
+    assert(user.amount_of_credits.eql?(100), 'The set up amount should be 100!')
+  end
+
+  def test_item_has_name
+   # To do
+  end
+
+  def test_item_has_price
+    item = Item.new('guitar',243,User.new('Hendrix'))
+    assert(item.price.eql?(243),'Price of item should be 243!')
+  end
+
+  def test_item_has_owner
+    # To do
+  end
+
+  def test_item_has_state
+    # To do
+  end
+
+  # ... More Tests to do ...
+
 end
