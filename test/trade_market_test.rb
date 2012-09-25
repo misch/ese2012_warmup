@@ -53,5 +53,4 @@ class TradeMarketTest < Test::Unit::TestCase
     assert(!guitar.can_be_bought?(bobby),"Bobby has not enough credits to buy Jimi's guitar!")
   end
   # ... More Tests to do ...
-
 end
