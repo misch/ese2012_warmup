@@ -1,10 +1,9 @@
 module TradeMarket
 
   class Item
-    # To change this template use File | Settings | File Templates.
     attr_accessor :name, :price, :state, :owner
 
-    def initialize(name, price, owner)
+    def initialize( name, price, owner )
       self.name = name
       self.price = price
       self.state = "inactive"
@@ -22,6 +21,10 @@ module TradeMarket
     def change_owner( new_owner)
       self.state = "inactive"
       self.owner = new_owner
+    end
+
+    def to_s
+      "#{item.name} (#{item.price})"
     end
   end
 end

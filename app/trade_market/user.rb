@@ -12,33 +12,42 @@ module TradeMarket
   # @param [String] name
   # @param [String] price
   # @return [Item]
-    def add_item(name,price)
-      new_item = Item.new(name, price, self)
+    def add_new_item_to_system(name, price)
+      new_item = Item.new( name, price, self )
       items.push(new_item)
     end
 
+    def add_Item(item)
+      item.push(item)
+    end
     def remove_item(item)
       items.delete(item)
     end
 
+
     def list_active_items()
+      active_items = Array.new
       items.each do |item|
         if item.active?()
-          puts "#{item.name} (#{item.price})"
+          active_items.push(item)
         end
       end
+      active_items
     end
 
   # @param [User] seller
   # @param [Item] item
     def buy_item(seller, item)
+      if item.can_be_bought?(self)
+        transact_credits(self,seller, item.price)
 
-      transact_credits(self,seller, item.price)
+        item.change_owner(self)
 
-      item.change_owner(self)
-
-      self.items.push(item)
-      seller.items.delete(item)
+        self.items.push(item)
+        seller.items.delete(item)
+      else
+        "#{self.name}, you cannot buy this item!"
+      end
     end
 
     def transact_credits(giver, taker, amount)
